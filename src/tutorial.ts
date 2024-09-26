@@ -1,24 +1,34 @@
-let awesomeName: string = 'shakeAndBake'
-awesomeName = 'something'
-awesomeName = awesomeName.toUpperCase()
-// console.log(awesomeName)
+// union type
+let tax: number | string = 10
 
-// awesomeName = 20
+tax = 'andy'
+tax = 10
+tax = 10.5
 
-let amount = 20
-amount = 21
-amount = 21 - 6
-// amount = 'pants'
+// literal types
+let requestStatus: 'pending' | 'success' | 'error' = 'pending'
+requestStatus = 'pending'
+requestStatus = 'error'
+// requestStatus = 'random'
 
-let newString = 'andy'
-newString = newString.concat('and emily')
+// any should we use this? ehhh
+let notSure: any = 4
+notSure = [1, 3, 5, 'string', 4.5]
 
-let newNum = 21
-newNum = newNum + 20
+// inferred to any but be careful
+let random
 
-let newBool = true
-newBool = 1 > 2
+const books = ['1984', 'Brave New World', 'Fahrenheit 451']
 
-// newNum = 'andy'
+let foundBook: string
 
-console.log(newBool, newNum, newString)
+for (let book of books) {
+  if (book === '1984') {
+    foundBook = book
+    break
+  }
+}
+
+// this is a problem because now we can set it to 10 which can cause issues downstream
+// foundBook = 10
+console.log(foundBook)
