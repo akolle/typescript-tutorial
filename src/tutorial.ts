@@ -38,4 +38,13 @@ foundBook?.length
 let orderStatus: 'processing' | 'shipped' | 'delivered' = 'processing'
 let discount: number | string = 20
 
-discount = 20 % console.log(discount)
+discount = '20%'
+
+// Typescript Arrays
+let prices: number[] = [100, 75, 24]
+prices.push(25)
+
+let fruit: string[] = ['apple', 'orange']
+
+// Be careful with this one
+// let randomValues: [] = [1, 2, 4]
