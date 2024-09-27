@@ -20,7 +20,7 @@ let random
 
 const books = ['1984', 'Brave New World', 'Fahrenheit 451']
 
-let foundBook: string
+let foundBook: string | undefined
 
 for (let book of books) {
   if (book === '1984') {
@@ -30,5 +30,12 @@ for (let book of books) {
 }
 
 // this is a problem because now we can set it to 10 which can cause issues downstream
-// foundBook = 10
-console.log(foundBook)
+foundBook?.length
+
+// console.log(foundBook)
+
+// UNION TYPE CHALLENGE
+let orderStatus: 'processing' | 'shipped' | 'delivered' = 'processing'
+let discount: number | string = 20
+
+discount = 20 % console.log(discount)
