@@ -144,6 +144,26 @@ function processData(
   }
 }
 
-console.log(processData('hello world', { reverse: true })) // test for string reverse
-console.log(processData('hello world')) // test for string without reverse
-console.log(processData(4, { reverse: false })) // test for number
+// console.log(processData('hello world', { reverse: true })) // test for string reverse
+// console.log(processData('hello world')) // test for string without reverse
+// console.log(processData(4, { reverse: false })) // test for number
+
+// Type Alias
+
+type User = { id: number; name: string; isActive: boolean }
+
+const john: User = {
+  id: 1,
+  name: 'john',
+  isActive: true,
+}
+const susan: User = {
+  id: 1,
+  name: 'susan',
+  isActive: false,
+}
+
+function createUser(user: User): User {
+  console.log(`Hello there ${user.name.toUpperCase()} !!!`)
+  return user
+}
