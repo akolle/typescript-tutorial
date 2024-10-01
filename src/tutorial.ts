@@ -1,6 +1,6 @@
 // FUNCTIONS PARAMS AND FUNCTION RETURNS
 
-import { array } from 'zod'
+import { array, boolean, string } from 'zod'
 
 function sayHi(name: string) {
   console.log(`Hello there ${name.toUpperCase()}`)
@@ -101,3 +101,49 @@ function processInput(input: string | number): void {
 
 processInput(2)
 processInput('hi, my name is andy')
+
+// Objects as parameters
+function createEmployee({ id }: { id: number }): {
+  id: number
+  isActive: boolean
+} {
+  return { id: 1, isActive: id % 2 === 0 }
+}
+
+const first = createEmployee({ id: 1 })
+const second = createEmployee({ id: 2 })
+console.log(first, second)
+
+// alternative
+function createStudent(student: { id: number; name: string }): void {
+  console.log(`Welcome to the course ${student.name.toUpperCase()}!!!`)
+}
+
+const newStudent = {
+  id: 5,
+  name: 'Andy',
+}
+
+createStudent(newStudent)
+
+// challenge
+function processData(
+  input: string | number,
+  config: { reverse: boolean } = { reverse: false }
+): string | number {
+  if (typeof input === 'string' && config.reverse === true) {
+    const inputArray = input.split('')
+    const reverseInputArray = inputArray.reverse()
+    const reverseInput = reverseInputArray.join('')
+    return reverseInput
+  }
+  if (typeof input === 'string') {
+    return input.toUpperCase()
+  } else {
+    return input * input
+  }
+}
+
+console.log(processData('hello world', { reverse: true })) // test for string reverse
+console.log(processData('hello world')) // test for string without reverse
+console.log(processData(4, { reverse: false })) // test for number
