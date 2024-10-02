@@ -189,29 +189,29 @@ setTheme('dark')
 
 // Challenge Type Alias
 
-type Employee = { id: number; name: string; department: string }
-type Manager = { id: number; name: string; employees: Employee[] }
-type Staff = Employee | Manager
-let staff: Staff
+// type Employee = { id: number; name: string; department: string }
+// type Manager = { id: number; name: string; employees: Employee[] }
+// type Staff = Employee | Manager
+// let staff: Staff
 
-function printStaffDetails(staff: Staff): void {
-  if ('employees' in staff) {
-    console.log(
-      `${staff.name} is a manager of ${staff.employees.length} employees`
-    )
-  } else {
-    console.log(
-      `${staff.name} is an employee in the ${staff.department} department`
-    )
-  }
-}
+// function printStaffDetails(staff: Staff): void {
+//   if ('employees' in staff) {
+//     console.log(
+//       `${staff.name} is a manager of ${staff.employees.length} employees`
+//     )
+//   } else {
+//     console.log(
+//       `${staff.name} is an employee in the ${staff.department} department`
+//     )
+//   }
+// }
 
-const alice: Employee = { id: 1, name: 'alice', department: 'sales' }
-const steve: Employee = { id: 2, name: 'steve', department: 'hr' }
-const bob: Manager = { id: 1, name: 'bob', employees: [alice, steve] }
+// const alice: Employee = { id: 1, name: 'alice', department: 'sales' }
+// const steve: Employee = { id: 2, name: 'steve', department: 'hr' }
+// const bob: Manager = { id: 1, name: 'bob', employees: [alice, steve] }
 
-printStaffDetails(alice)
-printStaffDetails(bob)
+// printStaffDetails(alice)
+// printStaffDetails(bob)
 
 // Intersection Type
 
@@ -303,3 +303,114 @@ const newComputer: Computer = {
 newComputer.printRam()
 newComputer.upgradeRam(4)
 newComputer.printRam()
+
+console.log(newComputer)
+
+// Interface Advanced
+
+// interface Person {
+//   name: string
+//   getDetails(): string
+// }
+
+// interface DogOwner {
+//   dogName: string
+//   getDogDetails(): string
+// }
+
+// Merge Interfaces
+
+// interface Person {
+//   age: number
+// }
+
+// const person: Person = {
+//   name: 'john',
+//   age: 30,
+//   getDetails() {
+//     return `Name: ${this.name}, Age: ${this.age}`
+//   },
+// }
+
+// interface Employee extends Person {
+//   employeeId: number
+// }
+
+// const employee = {
+//   name: 'jane',
+//   age: 23,
+//   employeeId: 123,
+//   getDetails() {
+//     return `Name: ${this.name}, Age: ${this.age}, Employee ID: ${this.employeeId}`
+//   },
+// }
+
+// console.log(employee.getDetails())
+
+// interface Manager extends Person, DogOwner {
+//   managePeople(): void
+// }
+
+// const manager: Manager = {
+//   name: 'bob',
+//   age: 42,
+//   dogName: 'rex',
+//   getDetails() {
+//     return `Name: ${this.name}, Age: ${this.age}`
+//   },
+//   getDogDetails() {
+//     return `Name: ${this.dogName}`
+//   },
+//   managePeople() {
+//     console.log('Managing people...')
+//   },
+// }
+
+// manager.managePeople()
+
+// Challenge Part 1
+
+interface Person {
+  name: string
+}
+
+interface DogOwner extends Person {
+  dogName: string
+}
+
+interface Manager extends Person {
+  managePeople(): void
+  delegateTasks(): void
+}
+
+function getEmployee(): Person | DogOwner | Manager {
+  const randNum: number = Math.random()
+
+  if (randNum < 0.33) {
+    const person: Person = {
+      name: 'andy',
+    }
+    return person
+  }
+  if (randNum < 0.66) {
+    const dogOwner: DogOwner = {
+      name: 'emily',
+      dogName: 'rex',
+    }
+    return dogOwner
+  } else {
+    const manager: Manager = {
+      name: 'keith',
+      managePeople() {
+        console.log('Managing people...')
+      },
+      delegateTasks() {
+        console.log('Delegating tasks...')
+      },
+    }
+    return manager
+  }
+}
+
+let employee: Person | DogOwner | Manager = getEmployee()
+console.log(employee)
