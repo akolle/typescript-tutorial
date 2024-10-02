@@ -167,3 +167,48 @@ function createUser(user: User): User {
   console.log(`Hello there ${user.name.toUpperCase()} !!!`)
   return user
 }
+
+type StringOrNumber = string | number
+
+let value: StringOrNumber
+value = 'hello'
+value = 123
+
+type Theme = 'light' | 'dark'
+
+let theme: Theme
+theme = 'dark'
+theme = 'light'
+
+function setTheme(t: Theme) {
+  theme = t
+}
+
+// only have 2 options now when calling the function
+setTheme('dark')
+
+// Challenge Type Alias
+
+type Employee = { id: number; name: string; department: string }
+type Manager = { id: number; name: string; employees: Employee[] }
+type Staff = Employee | Manager
+let staff: Staff
+
+function printStaffDetails(staff: Staff): void {
+  if ('employees' in staff) {
+    console.log(
+      `${staff.name} is a manager of ${staff.employees.length} employees`
+    )
+  } else {
+    console.log(
+      `${staff.name} is an employee in the ${staff.department} department`
+    )
+  }
+}
+
+const alice: Employee = { id: 1, name: 'alice', department: 'sales' }
+const steve: Employee = { id: 2, name: 'steve', department: 'hr' }
+const bob: Manager = { id: 1, name: 'bob', employees: [alice, steve] }
+
+printStaffDetails(alice)
+printStaffDetails(bob)
