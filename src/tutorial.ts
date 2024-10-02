@@ -212,3 +212,27 @@ const bob: Manager = { id: 1, name: 'bob', employees: [alice, steve] }
 
 printStaffDetails(alice)
 printStaffDetails(bob)
+
+// Intersection Type
+
+type Book = { id: number; name: string; price: number }
+type DiscountedBook = Book & { discount: number }
+
+const book1: Book = {
+  id: 1,
+  name: 'how to train a dragon',
+  price: 15,
+}
+
+const book2: Book = {
+  id: 2,
+  name: 'secret life of unicorns',
+  price: 18,
+}
+
+const discountedBook: DiscountedBook = {
+  id: 3,
+  name: 'gnomes and goblins',
+  price: 25,
+  discount: 0.15,
+}
