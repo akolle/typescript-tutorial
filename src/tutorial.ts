@@ -426,3 +426,19 @@ if (isManager(employee)) {
 }
 
 // --------------------------------------------------------------------------
+
+// Tuples and Enums ----------------------------------------------------------
+
+let person: [string, number] = ['john', 25]
+
+function getPerson(): [string, number] {
+  return ['john', 25]
+}
+
+let randomPerson = getPerson()
+console.log(randomPerson[0])
+console.log(randomPerson[1])
+
+let clair: [string, number?] = ['clair']
+
+// ---------------------------------------------------------------------------
