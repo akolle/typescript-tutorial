@@ -150,23 +150,23 @@ function processData(
 
 // Type Alias
 
-type User = { id: number; name: string; isActive: boolean }
+// type User = { id: number; name: string; isActive: boolean }
 
-const john: User = {
-  id: 1,
-  name: 'john',
-  isActive: true,
-}
-const susan: User = {
-  id: 1,
-  name: 'susan',
-  isActive: false,
-}
+// const john: User = {
+//   id: 1,
+//   name: 'john',
+//   isActive: true,
+// }
+// const susan: User = {
+//   id: 1,
+//   name: 'susan',
+//   isActive: false,
+// }
 
-function createUser(user: User): User {
-  console.log(`Hello there ${user.name.toUpperCase()} !!!`)
-  return user
-}
+// function createUser(user: User): User {
+//   console.log(`Hello there ${user.name.toUpperCase()} !!!`)
+//   return user
+// }
 
 type StringOrNumber = string | number
 
@@ -440,5 +440,63 @@ console.log(randomPerson[0])
 console.log(randomPerson[1])
 
 let clair: [string, number?] = ['clair']
+
+// Enums
+
+enum ServerReponseStatus {
+  Success = 200,
+  Error = 500,
+}
+
+Object.values(ServerReponseStatus).forEach((value) => {
+  if (typeof value === 'number') {
+    console.log(value)
+  }
+})
+
+console.log(ServerReponseStatus)
+
+interface ServerResponse {
+  result: ServerReponseStatus
+  data: string[]
+}
+
+function getServerResponse(): ServerResponse {
+  return {
+    result: ServerReponseStatus.Success,
+    data: ['first', 'last'],
+  }
+}
+
+const response: ServerResponse = getServerResponse()
+console.log(response)
+
+// Challenge
+
+enum UserRole {
+  Admin,
+  Manager,
+  Employee,
+}
+
+type User = {
+  id: number
+  name: string
+  role: UserRole
+  contact: [string, string]
+}
+
+function createUser(user: User): User {
+  return user
+}
+
+const user: User = createUser({
+  id: 1,
+  name: 'john d',
+  role: UserRole.Admin,
+  contact: ['john@adhfk.com', '123-234-5432'],
+})
+
+console.log(user)
 
 // ---------------------------------------------------------------------------
