@@ -368,7 +368,7 @@ console.log(newComputer)
 
 // manager.managePeople()
 
-// Challenge Part 1
+// Challenge Part 1 ----------------------------------------------------------
 
 interface Person {
   name: string
@@ -387,18 +387,21 @@ function getEmployee(): Person | DogOwner | Manager {
   const randNum: number = Math.random()
 
   if (randNum < 0.33) {
+    console.log(`you are in the person instance and randNum is ${randNum}`)
     const person: Person = {
       name: 'andy',
     }
     return person
   }
   if (randNum < 0.66) {
+    console.log(`you are in the dogowner instance and randNum is ${randNum}`)
     const dogOwner: DogOwner = {
       name: 'emily',
       dogName: 'rex',
     }
     return dogOwner
   } else {
+    console.log(`you are in the manager instance and randNum is ${randNum}`)
     const manager: Manager = {
       name: 'keith',
       managePeople() {
@@ -413,4 +416,13 @@ function getEmployee(): Person | DogOwner | Manager {
 }
 
 let employee: Person | DogOwner | Manager = getEmployee()
-console.log(employee)
+
+function isManager(obj: Person | DogOwner | Manager): obj is Manager {
+  return 'managePeople' in obj
+}
+
+if (isManager(employee)) {
+  employee.delegateTasks()
+}
+
+// --------------------------------------------------------------------------
