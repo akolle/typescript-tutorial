@@ -2,16 +2,16 @@
 
 import { array, boolean, string } from 'zod'
 
-function sayHi(name: string) {
-  console.log(`Hello there ${name.toUpperCase()}`)
-}
+// function sayHi(name: string) {
+// console.log(`Hello there ${name.toUpperCase()}`)
+// }
 
 // 3 options;
 // -any
 // -config
 // -type
 
-sayHi('Andy')
+// sayHi('Andy')
 
 // FUNCTION RETURNS
 
@@ -34,7 +34,7 @@ function addThree(number: any) {
 }
 
 const result = addThree(3)
-const someValue = result
+// const someValue = result
 
 // someValue.myMethod()
 
@@ -71,7 +71,7 @@ let scoreWithoutPenalty = calculateScore(300)
 
 function sum(message: string, ...numbers: number[]): string {
   const doubled = numbers.map((num) => num * 2)
-  console.log(doubled)
+  // console.log(doubled)
 
   let total = numbers.reduce((previous, current) => {
     return previous + current
@@ -112,7 +112,7 @@ function createEmployee({ id }: { id: number }): {
 
 const first = createEmployee({ id: 1 })
 const second = createEmployee({ id: 2 })
-console.log(first, second)
+// console.log(first, second)
 
 // alternative
 function createStudent(student: { id: number; name: string }): void {
@@ -124,7 +124,7 @@ const newStudent = {
   name: 'Andy',
 }
 
-createStudent(newStudent)
+// createStudent(newStudent)
 
 // challenge
 function processData(
@@ -168,24 +168,24 @@ function processData(
 //   return user
 // }
 
-type StringOrNumber = string | number
+// type StringOrNumber = string | number
 
-let value: StringOrNumber
-value = 'hello'
-value = 123
+// let value: StringOrNumber
+// value = 'hello'
+// value = 123
 
-type Theme = 'light' | 'dark'
+// type Theme = 'light' | 'dark'
 
-let theme: Theme
-theme = 'dark'
-theme = 'light'
+// let theme: Theme
+// theme = 'dark'
+// theme = 'light'
 
-function setTheme(t: Theme) {
-  theme = t
-}
+// function setTheme(t: Theme) {
+//   theme = t
+// }
 
-// only have 2 options now when calling the function
-setTheme('dark')
+// // only have 2 options now when calling the function
+// setTheme('dark')
 
 // Challenge Type Alias
 
@@ -300,11 +300,11 @@ const newComputer: Computer = {
   },
 }
 
-newComputer.printRam()
-newComputer.upgradeRam(4)
-newComputer.printRam()
+// newComputer.printRam()
+// newComputer.upgradeRam(4)
+// newComputer.printRam()
 
-console.log(newComputer)
+// console.log(newComputer)
 
 // Interface Advanced
 
@@ -436,8 +436,8 @@ function getPerson(): [string, number] {
 }
 
 let randomPerson = getPerson()
-console.log(randomPerson[0])
-console.log(randomPerson[1])
+// console.log(randomPerson[0])
+// console.log(randomPerson[1])
 
 let clair: [string, number?] = ['clair']
 
@@ -454,7 +454,7 @@ Object.values(ServerReponseStatus).forEach((value) => {
   }
 })
 
-console.log(ServerReponseStatus)
+// console.log(ServerReponseStatus)
 
 interface ServerResponse {
   result: ServerReponseStatus
@@ -469,34 +469,149 @@ function getServerResponse(): ServerResponse {
 }
 
 const response: ServerResponse = getServerResponse()
-console.log(response)
+// console.log(response)
 
 // Challenge
 
-enum UserRole {
-  Admin,
-  Manager,
-  Employee,
+// enum UserRole {
+//   Admin,
+//   Manager,
+//   Employee,
+// }
+
+// type User = {
+//   id: number
+//   name: string
+//   role: UserRole
+//   contact: [string, string]
+// }
+
+// function createUser(user: User): User {
+//   return user
+// }
+
+// const user: User = createUser({
+//   id: 1,
+//   name: 'john d',
+//   role: UserRole.Admin,
+//   contact: ['john@adhfk.com', '123-234-5432'],
+// })
+
+// console.log(user)
+
+// ---------------------------------------------------------------------------
+
+// Type Assertion, Type Unknown and Type Never -------------------------------
+
+let someValue: any = 'this is a string'
+
+let strLength: number = (someValue as string).length
+
+type Bird = {
+  name: string
+}
+
+let birdString = '{"name": "Eagle"}'
+let dogString = '{"breed": "Poodle"}'
+
+let birdObject = JSON.parse(birdString)
+let dogObject = JSON.parse(dogString)
+
+let bird = birdObject as Bird
+let dog = dogObject as Bird
+
+console.log(bird.name)
+console.log(dog.name)
+
+enum Status {
+  Pending = 'pending',
+  Declined = 'declined',
 }
 
 type User = {
-  id: number
   name: string
-  role: UserRole
-  contact: [string, string]
+  status: Status
 }
 
-function createUser(user: User): User {
-  return user
+// save Status.Pending in the DB as a string
+// retrieve string from the DB
+
+const statusValue = 'pending'
+
+const user: User = { name: 'john', status: statusValue as Status } // type assertion is a way to tell typescript that we know the type and it's ok
+
+// Type Unknown
+
+let unknownValue: unknown
+unknownValue = 'hello world'
+unknownValue = [1, 2, 3]
+unknownValue = 42.67896
+
+if (typeof unknownValue === 'number') {
+  unknownValue.toFixed(2)
 }
 
-const user: User = createUser({
-  id: 1,
-  name: 'john d',
-  role: UserRole.Admin,
-  contact: ['john@adhfk.com', '123-234-5432'],
-})
+function runSomeCode() {
+  const random = Math.random()
+  if (random < 0.5) {
+    throw new Error('there was an error...')
+  } else {
+    throw 'some error'
+  }
+}
 
-console.log(user)
+try {
+  runSomeCode()
+} catch (error) {
+  if (error instanceof Error) {
+    console.log(error.message)
+  } else {
+    console.log(error)
+  }
+}
+
+// Type Never
+
+// let someValue: never = 'hello' cannot assign any value to type never
+
+type Theme = 'light' | 'dark'
+
+function checkTheme(theme: Theme): void {
+  if (theme === 'light') {
+    console.log('light theme')
+    return
+  }
+  if (theme === 'dark') {
+    console.log('dark theme')
+    return
+  }
+  theme
+}
+
+enum Color {
+  Red,
+  Blue,
+  Green,
+}
+
+function getColorName(color: Color) {
+  switch (color) {
+    case Color.Red:
+      return 'Red'
+    case Color.Blue:
+      return 'Blue'
+    case Color.Green:
+      return 'Green'
+    default:
+      // at build time
+      let unexpectedColor: never = color
+      // at runtime
+      throw new Error(`unexpected color value : ${color}`)
+  }
+}
+
+console.log(getColorName(Color.Red))
+console.log(getColorName(Color.Blue))
+console.log(getColorName(Color.Green))
 
 // ---------------------------------------------------------------------------
