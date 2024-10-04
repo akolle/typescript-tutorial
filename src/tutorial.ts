@@ -1,3 +1,19 @@
+import newStudent, { sayHello, person, type Student } from './actions'
+// import {someValue} from './example.js' should be using .ts files
+
+sayHello('Typescript')
+console.log(newStudent)
+console.log(person)
+
+const anotherStudent: Student = {
+  name: 'bob',
+  age: 23,
+}
+
+console.log(anotherStudent)
+
+/*
+
 // FUNCTIONS PARAMS AND FUNCTION RETURNS
 
 import { array, boolean, string } from 'zod'
@@ -27,6 +43,8 @@ function calculateDiscount(price: number): number {
 const finalPrice = calculateDiscount(200)
 
 */
+
+/*
 
 function addThree(number: any) {
   let anotherNumber: number = 3
@@ -238,7 +256,7 @@ const discountedBook: DiscountedBook = {
   discount: 0.15,
 }
 */
-
+/*
 // Interface Fundamentals
 
 interface Book {
@@ -614,4 +632,8 @@ console.log(getColorName(Color.Red))
 console.log(getColorName(Color.Blue))
 console.log(getColorName(Color.Green))
 
+const susan = 'susan'
+
 // ---------------------------------------------------------------------------
+
+*/
