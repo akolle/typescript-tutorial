@@ -1,6 +1,12 @@
 // import newStudent, { sayHello, person, type Student } from './actions'
 // import {someValue} from './example.js' should be using .ts files
 
+// GENERICS
+
+let array1: string[] = ['Apple', 'Banana', 'Mango']
+let array2: number[] = [1, 2, 3]
+let array3: boolean[] = [true, false, true]
+
 // TYPE PREDICATE
 
 // type Student = {
