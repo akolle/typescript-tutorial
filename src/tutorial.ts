@@ -3,11 +3,72 @@
 
 // TYPE GUARDING
 
-type ValueType = string | number | boolean
+function checkInput(input: Date | string): string {
+  if (input instanceof Date) {
+    return input.getFullYear().toString()
+  } else {
+    return input
+  }
+}
 
-let value: ValueType
-const random = Math.random()
-value = random < 0.33 ? 'hello' : random < 0.66 ? 123.456 : true
+const year = checkInput(new Date())
+const random = checkInput('2020-05-05')
+
+console.log(year)
+console.log(random)
+
+// function printLength(str: string | null | undefined) {
+//   if (str) {
+//     console.log(str.length)
+//   } else {
+//     console.log('no string provided')
+//   }
+// }
+
+// printLength('hello')
+// printLength('')
+// printLength(null)
+// printLength(undefined)
+
+// type Dog = { type: 'dog'; name: string; bark: () => void }
+// type Cat = { type: 'cat'; name: string; meow: () => void }
+// type Animal = Dog | Cat
+
+// function makeSound(animal: Animal) {
+//   if(animal.type === 'dog'){
+//     animal.bark()
+//   } else {
+//     animal.meow();
+//   }
+// }
+
+// function makeSound(animal: Animal) {
+//   if ('bark' in animal) {
+//     animal.bark()
+//   } else {
+//     animal.meow()
+//   }
+// }
+
+// type ValueType = string | number | boolean
+
+// let value: ValueType
+// const random = Math.random()
+// value = random < 0.33 ? 'hello' : random < 0.66 ? 123.456 : true
+
+// function checkValue(value: ValueType): void {
+//   if (typeof value === 'string') {
+//     console.log(value.toLowerCase())
+//     return
+//   }
+//   if (typeof value === 'number') {
+//     console.log(value.toFixed(2))
+//     return
+//   }
+//   console.log(`boolean: ${value}`)
+// }
+
+// checkValue(value)
 
 // sayHello('Typescript')
 // console.log(newStudent)
