@@ -1,21 +1,47 @@
 // import newStudent, { sayHello, person, type Student } from './actions'
 // import {someValue} from './example.js' should be using .ts files
 
+// TYPE PREDICATE
+
+// type Student = {
+//   name: string
+//   study: () => void
+// }
+
+// type User = {
+//   name: string
+//   login: () => void
+// }
+
+// type Person = Student | User
+
+// const randomPerson = (): Person => {
+//   return Math.random() > 0.5
+//     ? { name: 'john', study: () => console.log('Studying') }
+//     : { name: 'mary', login: () => console.log('Logging in') }
+// }
+
+// const person = randomPerson()
+
+// function isStudent(person:Person){
+//   return 'study' in person
+// }
+
 // TYPE GUARDING
 
-function checkInput(input: Date | string): string {
-  if (input instanceof Date) {
-    return input.getFullYear().toString()
-  } else {
-    return input
-  }
-}
+// function checkInput(input: Date | string): string {
+//   if (input instanceof Date) {
+//     return input.getFullYear().toString()
+//   } else {
+//     return input
+//   }
+// }
 
-const year = checkInput(new Date())
-const random = checkInput('2020-05-05')
+// const year = checkInput(new Date())
+// const random = checkInput('2020-05-05')
 
-console.log(year)
-console.log(random)
+// console.log(year)
+// console.log(random)
 
 // function printLength(str: string | null | undefined) {
 //   if (str) {
