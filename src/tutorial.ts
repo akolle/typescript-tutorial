@@ -3,9 +3,39 @@
 
 // GENERICS
 
-let array1: string[] = ['Apple', 'Banana', 'Mango']
-let array2: number[] = [1, 2, 3]
-let array3: boolean[] = [true, false, true]
+// let array1: string[] = ['Apple', 'Banana', 'Mango']
+// let array2: number[] = [1, 2, 3]
+// let array3: boolean[] = [true, false, true]
+
+// let array1: Array<string> = ['Apple', 'Banana', 'Mango']
+// let array2: Array<number> = [1, 2, 3]
+
+// Too many types to set up so we use Generics
+// function createString(arg: string): string {
+//   return arg
+// }
+// function createNumber(arg: number): number {
+//   return arg
+// }
+
+function genericFunction<T>(arg: T): T {
+  return arg
+}
+
+const someStringValue = genericFunction<string>('hello world')
+const someNumberValue = genericFunction<number>(123)
+
+interface GenericInterface<T> {
+  value: T
+  getValue: () => T
+}
+
+const genericString: GenericInterface<string> = {
+  value: 'Hello World',
+  getValue() {
+    return this.value
+  },
+}
 
 // TYPE PREDICATE
 
