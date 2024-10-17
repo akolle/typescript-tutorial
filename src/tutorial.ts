@@ -37,6 +37,14 @@ const genericString: GenericInterface<string> = {
   },
 }
 
+function pair<T, U>(param1: T, param2: U): [T, U] {
+  return [param1, param2]
+}
+
+let result = pair(123, 'hello')
+
+console.log(result)
+
 // TYPE PREDICATE
 
 // type Student = {
