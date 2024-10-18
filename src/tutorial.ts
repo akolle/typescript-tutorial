@@ -6,14 +6,16 @@ import { z } from 'zod'
 // FETCHING DATA WITH TYPESCRIPT
 const url = 'https://www.course-api.com/react-tours-project'
 
-type Tour = {
-  id: string
-  name: string
-  info: string
-  image: string
-  price: string
-  something: boolean //add new property but be careful. no way for typescript to check at runtime.Use Zod to help with this
-}
+const tourSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  info: z.string(),
+  image: z.string(),
+  price: z.string(),
+  something: z.number(),
+})
+
+type Tour = z.infer<typeof tourSchema>
 
 async function fetchData(url: string): Promise<Tour[]> {
   try {
@@ -21,8 +23,13 @@ async function fetchData(url: string): Promise<Tour[]> {
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`)
     }
-    const data: Tour[] = await response.json()
-    return data
+    const rawData: Tour[] = await response.json()
+    const result = tourSchema.array().safeParse(rawData)
+    console.log(result)
+    if (!result.success) {
+      throw new Error(`Invalid data: ${result.error}`)
+    }
+    return result.data
   } catch (error) {
     const errorMsg =
       error instanceof Error ? error.message : 'there was an error...'
@@ -33,7 +40,7 @@ async function fetchData(url: string): Promise<Tour[]> {
 
 const tours = await fetchData(url)
 tours.map((tour) => {
-  console.log(tour.something)
+  console.log(tour.name)
 })
 
 // GENERICS
