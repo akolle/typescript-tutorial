@@ -10,6 +10,7 @@ type Tour = {
   info: string
   image: string
   price: string
+  something: boolean //add new property but be careful. no way for typescript to check at runtime.Use Zod to help with this
 }
 
 async function fetchData(url: string): Promise<Tour[]> {
@@ -30,7 +31,7 @@ async function fetchData(url: string): Promise<Tour[]> {
 
 const tours = await fetchData(url)
 tours.map((tour) => {
-  console.log(tour.info)
+  console.log(tour.something)
 })
 
 // GENERICS
