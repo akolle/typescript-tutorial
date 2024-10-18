@@ -4,13 +4,21 @@
 // FETCHING DATA WITH TYPESCRIPT
 const url = 'https://www.course-api.com/react-tours-project'
 
-async function fetchData(url: string) {
+type Tour = {
+  id: string
+  name: string
+  info: string
+  image: string
+  price: string
+}
+
+async function fetchData(url: string): Promise<Tour[]> {
   try {
     const response = await fetch(url)
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`)
     }
-    const data = await response.json()
+    const data: Tour[] = await response.json()
     return data
   } catch (error) {
     const errorMsg =
@@ -21,8 +29,8 @@ async function fetchData(url: string) {
 }
 
 const tours = await fetchData(url)
-tours.map((tour: any) => {
-  console.log(tour.name)
+tours.map((tour) => {
+  console.log(tour.info)
 })
 
 // GENERICS
