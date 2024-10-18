@@ -1,6 +1,18 @@
 // import newStudent, { sayHello, person, type Student } from './actions'
 // import {someValue} from './example.js' should be using .ts files
 
+// FETCHING DATA WITH TYPESCRIPT
+const url = 'https://www.course-api.com/react-tours-project'
+
+async function fetchData(url: string) {
+  try {
+    const response = await fetch(url)
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`)
+    }
+  } catch (error) {}
+}
+
 // GENERICS
 
 // let array1: string[] = ['Apple', 'Banana', 'Mango']
