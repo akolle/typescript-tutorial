@@ -10,8 +10,20 @@ async function fetchData(url: string) {
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`)
     }
-  } catch (error) {}
+    const data = await response.json()
+    return data
+  } catch (error) {
+    const errorMsg =
+      error instanceof Error ? error.message : 'there was an error...'
+    console.log(errorMsg)
+    return []
+  }
 }
+
+const tours = await fetchData(url)
+tours.map((tour: any) => {
+  console.log(tour.name)
+})
 
 // GENERICS
 
