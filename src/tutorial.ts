@@ -1,3 +1,19 @@
+class Book {
+  title: string
+  author: string
+
+  constructor(title: string, author: string) {
+    this.title = title
+    this.author = author
+  }
+}
+
+const deepWork = new Book('deep work', 'cal james')
+deepWork.title = 'baby cakes'
+console.log(deepWork.title)
+
+/*
+
 import { z } from 'zod'
 
 // import newStudent, { sayHello, person, type Student } from './actions'
