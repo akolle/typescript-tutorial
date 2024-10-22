@@ -1,16 +1,24 @@
 class Book {
   title: string
   author: string
+  private checkedOut: boolean
 
   constructor(title: string, author: string) {
     this.title = title
     this.author = author
+    this.checkedOut = false
+  }
+
+  checkOut() {
+    this.checkedOut = true
   }
 }
 
 const deepWork = new Book('deep work', 'cal james')
 deepWork.title = 'baby cakes'
-console.log(deepWork.title)
+console.log(deepWork)
+deepWork.checkOut()
+console.log(deepWork)
 
 /*
 
